@@ -28,4 +28,8 @@ public class TodoItemDto {
     private List<Long> deleteIds;   // 삭제할 id 목록
     private LocalDateTime regDate;
     private LocalDateTime modDate;
+	public int getModifyType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
