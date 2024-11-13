@@ -14,4 +14,6 @@ namespace: "82265615"
 namePrefix: prod-
 images:
 - name: cepgstapacr.azurecr.io/82265615
-  newTag: "latest"
+  newTag: latest
+- name: cepgstapacr.azurecr.io/cloud-sample
+  newTag: "202411130700"
