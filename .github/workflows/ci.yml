@@ -54,17 +54,17 @@ jobs:
       - name: 'Push image'
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.APPACR_LOGIN_SERVER }}
-          username: ${{ secrets.APP_REGISTRY_USERNAME }}
-          password: ${{ secrets.APP_REGISTRY_PASSWORD }}
+          login-server: ${{ secrets.STAPACR_LOGIN_SERVER }}
+          username: ${{ secrets.STAPACR_USERNAME }}
+          password: ${{ secrets.STAPACR_PASSWORD }}
 
       - run: |
-          docker push ${{ secrets.APPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+          docker push ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
       - name: Update Kubernetes resources
         run: |
           cd manifests/overlays/prod
-          kustomize edit set image ${{ secrets.APPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+          kustomize edit set image ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
           cat kustomization.yaml
 
       - name: Commit files
